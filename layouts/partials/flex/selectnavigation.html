@@ -3,6 +3,10 @@
   {{- range .Site.Home.Sections.ByTitle}}
   {{- template "menu-nav" dict "sect" . "currentnode" $currentNode "level" 1}}
   {{- end}}
+{{- else if eq .Site.Params.ordersectionsby "lastmod"}}
+  {{- range .Site.Home.Sections.ByLastmod.Reverse}}
+  {{- template "menu-nav" dict "sect" . "currentnode" $currentNode "level" 1}}
+  {{- end}}  
 {{- else}}
   {{- range .Site.Home.Sections.ByWeight}}
   {{- template "menu-nav" dict "sect" . "currentnode" $currentNode "level" 1}}
@@ -37,6 +41,13 @@
             {{- template "menu-nav" dict "sect" . "currentnode" $currentNode  }}
             {{- end}}
           {{- end}}
+        {{- else if eq .Site.Params.ordersectionsby "lastmod"}}
+          {{- range $pages.ByLastmod.Reverse }}
+            {{- if and .Params.hidden (not $.showhidden) }}
+            {{- else}}
+            {{- template "menu-nav" dict "sect" . "currentnode" $currentNode  }}
+            {{- end}}
+          {{- end}}  
         {{- else}}
           {{- range $pages.ByWeight }}
             {{- if and .Params.hidden (not $.showhidden) }}

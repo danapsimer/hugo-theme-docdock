@@ -5,6 +5,10 @@
   {{- range .Site.Home.Sections.ByTitle}}
   {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks}}
   {{- end}}
+{{- else if eq .Site.Params.ordersectionsby "lastmod"}}
+  {{- range .Site.Home.Sections.ByLastmod}}
+  {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks}}
+  {{- end}}  
 {{- else}}
   {{- range .Site.Home.Sections.ByWeight}}
   {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks}}
@@ -49,6 +53,13 @@
             {{- template "section-tree-nav" dict "sect" . "showvisitedlinks" $showvisitedlinks }}
             {{- end}}
           {{- end}}
+        {{- else if eq .Site.Params.ordersectionsby "lastmod"}}
+          {{- range $pages.ByLastmod.Reverse }}
+            {{- if and .Params.hidden (not $.showhidden) }}
+            {{- else}}
+            {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks }}
+            {{- end}}
+          {{- end}}  
         {{- else}}
           {{- range $pages.ByWeight }}
             {{- if and .Params.hidden (not $.showhidden) }}
