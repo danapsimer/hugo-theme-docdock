@@ -57,7 +57,7 @@
           {{- range $pages.ByLastmod.Reverse }}
             {{- if and .Params.hidden (not $.showhidden) }}
             {{- else}}
-            {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks }}
+            {{- template "section-tree-nav" dict "sect" . "showvisitedlinks" $showvisitedlinks }}
             {{- end}}
           {{- end}}  
         {{- else}}
