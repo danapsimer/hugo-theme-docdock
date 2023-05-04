@@ -8,3 +8,4 @@ public/
 /static/theme-flex/style.css.map
 
 .sass-cache
+*.swp
